@@ -56,6 +56,3 @@ class LinkedList(object):
             print "value of tail ",self.tail.value,"\n"
         else:
             print "Empty"
-            
-   def __str__():
-    print "cool"

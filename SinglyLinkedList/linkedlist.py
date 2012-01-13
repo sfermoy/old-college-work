@@ -45,7 +45,7 @@ class LinkedList(object):
             n=n.next
         return False
        
-   def test(self):
+   def display(self):
         if self.head != None:
             print "val ", self.head.value
             n=self.head
