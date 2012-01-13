@@ -1,7 +1,7 @@
 class Node(object):
 
-        def __init__(self,value):
-            self.value= value
+        def __init__(self,val):
+            self.value= val
             self.next=None
         
 class LinkedList(object):
@@ -9,9 +9,10 @@ class LinkedList(object):
    def __init__(self):
         self.head=None
         self.tail=None
-                
-   def addNode(self,value):
-        n= Node(value)
+   
+   #adds a node to the tail/end of the linked-list            
+   def addLast(self,val):
+        n = Node(val)
         if self.head==None:
             self.head=n
             self.tail=n
@@ -19,7 +20,8 @@ class LinkedList(object):
             self.tail.next=n
             self.tail=n
             
-   def remove(self,value):
+   # Remove first node which matches value         
+   def removeFirst(self,value):
         if self.head == None:
             return False
             
@@ -44,15 +46,33 @@ class LinkedList(object):
                     return True
             n=n.next
         return False
-       
-   def display(self):
+        
+   # prints the linked list structure to the console   
+   
+   def __repr__(self):
+        result=''
         if self.head != None:
-            print "val ", self.head.value
+            result += 'val '+ str(self.head.value)+ '\n'
             n=self.head
             while n.next != None:
-                print "val ",n.next.value
+                result += 'val '+ str(n.next.value) + '\n'
                 n=n.next
-            print "value of head ",self.head.value
-            print "value of tail ",self.tail.value,"\n"
+            result += 'value of head '+ str(self.head.value)+ '\n'
+            result += 'value of tail '+ str(self.head.value) + '\n'
         else:
-            print "Empty"
+            result += 'Empty'
+        return result
+        
+   def __str__(self):
+        result=''
+        if self.head != None:
+            result += 'val '+ str(self.head.value)+ '\n'
+            n=self.head
+            while n.next != None:
+                result += 'val '+ str(n.next.value)+ '\n'
+                n=n.next
+            result += 'value of head '+ str(self.head.value)+ '\n'
+            result += 'value of tail '+ str(self.head.value)+'\n'
+        else:
+            result += 'Empty'
+        return result
