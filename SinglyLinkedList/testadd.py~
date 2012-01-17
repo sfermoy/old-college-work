@@ -1,7 +1,7 @@
 import linkedlist 
 l=linkedlist.LinkedList()
-l.addLast(6)
-l.addLast(9)
+l.addLast(1)
+l.addLast(2)
 l.addLast(3)
 l.addLast(3)
 l.addLast(6)

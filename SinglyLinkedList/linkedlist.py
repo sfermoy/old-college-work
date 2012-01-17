@@ -1,17 +1,17 @@
 class Node(object):
 
-        def __init__(self,val):
-            self.value= val
-            self.next=None
+    def __init__(self,val):
+        self.value= val
+        self.next=None
         
 class LinkedList(object):
    
-   def __init__(self):
+    def __init__(self):
         self.head=None
         self.tail=None
    
    #adds a node to the tail/end of the linked-list            
-   def addLast(self,val):
+    def addLast(self,val):
         n = Node(val)
         if self.head==None:
             self.head=n
@@ -21,7 +21,7 @@ class LinkedList(object):
             self.tail=n
             
    # Remove first node which matches value         
-   def removeFirst(self,value):
+    def remove(self,value):
         if self.head == None:
             return False
             
@@ -46,10 +46,21 @@ class LinkedList(object):
                     return True
             n=n.next
         return False
-        
-   # prints the linked list structure to the console   
+    
+    def removeFirst(self):
+        if self.head == None:
+            return False
+        if self.head is self.tail
+            self.head=None
+            self.tail=None
+            return True
+        else
+            self.head=self.head.next
+            return True
    
-   def __repr__(self):
+
+   # prints the linked list structure to the console   
+    def __repr__(self):
         result=''
         if self.head != None:
             result += 'val '+ str(self.head.value)+ '\n'
@@ -63,7 +74,7 @@ class LinkedList(object):
             result += 'Empty'
         return result
         
-   def __str__(self):
+    def __str__(self):
         result=''
         if self.head != None:
             result += 'val '+ str(self.head.value)+ '\n'
