@@ -60,8 +60,3 @@ class BST(object):
                 else:
                     current=None
         return result
-        
-    def __str__(self):
-        result=''
-        
-        return result

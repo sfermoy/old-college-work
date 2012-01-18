@@ -73,17 +73,3 @@ class LinkedList(object):
         else:
             result += 'Empty'
         return result
-        
-    def __str__(self):
-        result=''
-        if self.head != None:
-            result += 'val '+ str(self.head.value)+ '\n'
-            n=self.head
-            while n.next != None:
-                result += 'val '+ str(n.next.value)+ '\n'
-                n=n.next
-            result += 'value of head '+ str(self.head.value)+ '\n'
-            result += 'value of tail '+ str(self.head.value)+'\n'
-        else:
-            result += 'Empty'
-        return result
