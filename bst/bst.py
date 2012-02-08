@@ -1,8 +1,7 @@
 from collections import deque
-import pdb
 class Node(object):
-    def __init__(self,val=None,data=None):
-        self.value = val
+    def __init__(self,key=None,data=None):
+        self.sortkey = key
         self.left = None
         self.right = None
         self.data=data
@@ -13,30 +12,30 @@ class BST(object):
         self.lenght=0
 
     #adds a node to the Binary search tree            
-    def Insert(self,val,data=None):
+    def Insert(self,key,data=None):
         if self.first ==None:
-            self.first=Node(val,data)
+            self.first=Node(key,data)
         else:
-            self._insertNode(self.first,val,data)
+            self._insertNode(self.first,key,data)
                 
-    def _insertNode(self,current,val,data=None):
-            if current.value > val:
+    def _insertNode(self,current,key,data=None):
+            if current.sortkey > key:
                 if current.left == None :
-                    current.left = Node(val,data)
+                    current.left = Node(key,data)
                 else:
-                    self._insertNode(current.left,val,data)
+                    self._insertNode(current.left,key,data)
             else:
                 if current.right == None :
-                    current.right = Node(val,data)
+                    current.right = Node(key,data)
                 else:
-                    self._insertNode(current.right,val,data)
+                    self._insertNode(current.right,key,data)
 
-    #Remove first node which matches value         
-    def Remove(self,val):
+    #Remove first node which matches sortkey         
+    def Remove(self,key):
         if self.first == None:
             #test for empty tree
             return False
-        to_remove = self._RecursiveSearch(self.first,val)
+        to_remove = self._RecursiveSearch(self.first,key)
         parent = self._FindParent(to_remove)
         if to_remove.right==None and to_remove.left==None:
             # Case 1 the node is a leaf
@@ -50,8 +49,6 @@ class BST(object):
             return False
         elif to_remove.right !=None:
             #Case 2 the Node has a Right subtree
-            #if val=="google":
-                #pdb.set_trace()
             themin=self.FindMin(to_remove.right)
             theminparent=self._FindParent(themin)
 
@@ -92,22 +89,22 @@ class BST(object):
         current=self.first
         if current == None:
             return None
-        return self._RecursiveFindParent(self.first,node.value)
+        return self._RecursiveFindParent(self.first,node.sortkey)
 
-    def _RecursiveFindParent(self,current,val):
-        if current.value == val:
+    def _RecursiveFindParent(self,current,key):
+        if current.sortkey == key:
             #First Node
             return None
-        elif val < current.value:
-            if val==current.left.value:
+        elif key < current.sortkey:
+            if key==current.left.sortkey:
                 return current
             else:
-                return self._RecursiveFindParent(current.left,val)
+                return self._RecursiveFindParent(current.left,key)
         else:
-            if val==current.right.value:
+            if key==current.right.sortkey:
                 return current
             else:
-                return self._RecursiveFindParent(current.right,val)
+                return self._RecursiveFindParent(current.right,key)
 
     def FindMax(self,root):
         while root.right != None:
@@ -119,19 +116,19 @@ class BST(object):
             root=root.left
         return root
 
-    def Search(self,val):
+    def Search(self,key):
         current = self.first
         if current == None:
             return None
-        return self._RecursiveSearch(self.first,val)
+        return self._RecursiveSearch(self.first,key)
 
-    def _RecursiveSearch(self,current,val):
-        if current.value == val:
+    def _RecursiveSearch(self,current,key):
+        if current.sortkey == key:
             return current
-        elif val < current.value:
-            return self._RecursiveSearch(current.left,val)
+        elif key < current.sortkey:
+            return self._RecursiveSearch(current.left,key)
         else:
-            return self._RecursiveSearch(current.right,val)
+            return self._RecursiveSearch(current.right,key)
 
    # prints the Binary tree structure to the console   
     def __repr__(self):
@@ -140,7 +137,7 @@ class BST(object):
         if self.first==None:
             return "Empty"
         else:
-            result+= str(self.first.value)+" "
+            result+= str(self.first.sortkey)+" "
             current=self.first
             count=0
             while current != None:
@@ -152,9 +149,9 @@ class BST(object):
                 if q:
                     old=current
                     current=q.popleft()
-                    if current.value<old.value:
+                    if current.sortkey<old.sortkey:
                         result+="\n"
-                    result+=str(current.value)+" "
+                    result+=str(current.sortkey)+" "
                 else:
                     current=None
         return result
