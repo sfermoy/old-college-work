@@ -12,7 +12,7 @@ class BST(object):
         self.lenght=0
 
     #adds a node to the Binary search tree            
-    def Insert(self,key,data=None):
+    def insert(self,key,data=None):
         if self.first ==None:
             self.first=Node(key,data)
         else:
@@ -31,7 +31,7 @@ class BST(object):
                     self._insertNode(current.right,key,data)
 
     #Remove first node which matches sortkey         
-    def Remove(self,key):
+    def remove(self,key):
         if self.first == None:
             #test for empty tree
             return False
@@ -106,17 +106,17 @@ class BST(object):
             else:
                 return self._RecursiveFindParent(current.right,key)
 
-    def FindMax(self,root):
+    def find_max(self,root):
         while root.right != None:
             root=root.right
         return root
  
-    def FindMin(self,root):
+    def find_min(self,root):
         while root.left != None:
             root=root.left
         return root
 
-    def Search(self,key):
+    def search(self,key):
         current = self.first
         if current == None:
             return None
